@@ -1,0 +1,27 @@
+version: "3.1"
+
+services: 
+    mongo:
+        container_name: mongo
+        image: mongo
+        restart: always
+        ports: 
+            - "27017:27017"
+
+        expose: 
+            - '27017'
+
+    mongo-express:
+        container_name: mongo-express
+        image: mongo-express
+        restart: always
+        ports: 
+            - "8081:8081"
+    node-server:
+        restart: always
+        container_name: node-server
+        build: .
+        ports: 
+            - "4000:4000"
+        links: 
+            - mongo
